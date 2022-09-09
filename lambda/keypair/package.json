@@ -1,0 +1,15 @@
+{
+  "name": "keypair",
+  "version": "1.0.0",
+  "description": "",
+  "main": "keypair.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.165.0",
+    "@solana/web3.js": "^1.59.1"
+  }
+}

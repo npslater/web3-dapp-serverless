@@ -6,11 +6,12 @@ import { SecretsManagerClient, DeleteSecretCommand } from "@aws-sdk/client-secre
 
 
 const event:Event = {
-    "secretName":"test_" + uuidv4(),
+    "endpoint":"test",
 };
 
 const handlerOutput = {
-    "secretArn": ""
+    "secretArn": "",
+    "publicKey": ""
 };
 
 const context:Context = {
@@ -53,5 +54,9 @@ describe("testing keypair handler", () => {
             if ( result.secretArn != null ) {
                 handlerOutput.secretArn = result.secretArn;
             }
+    });
+    test("it should return an publicKey", async () => {
+        const result = await handler(event,context);
+            expect(result.publicKey).toBeDefined();
     });
 });

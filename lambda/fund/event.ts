@@ -5,5 +5,11 @@
 //   "Set quicktype target language"
 
 export interface Event {
-    endpoint: string;
+    endpoint:      string;
+    keyPairOutput: KeyPairOutput;
+}
+
+export interface KeyPairOutput {
+    secretArn: string;
+    publicKey: string;
 }

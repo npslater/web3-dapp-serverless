@@ -10,11 +10,12 @@ export const handler = async function(event: Event, context: Context) {
             "publicKey": keypair.publicKey.toString(),
             "secretKey": Array.from(keypair.secretKey)
         };
-        const command = new CreateSecretCommand({"Name": event.secretName, "SecretString": JSON.stringify(secret)});
+        const command = new CreateSecretCommand({"Name": keypair.publicKey.toString(), "SecretString": JSON.stringify(secret)});
         const client = new SecretsManagerClient({});
         let output = await client.send(command);
         return {
             "secretArn": output.ARN,
+            "publicKey": keypair.publicKey.toString(),
         }   
     }
     catch ( error ){

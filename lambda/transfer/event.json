@@ -1,0 +1,10 @@
+{
+    "endpoint": "https://api.devnet.solana.com/",
+    "keyPairOutput": {
+      "secretArn": "arn",
+      "publicKey": "publicKey"
+    },
+    "fundOutput": {
+      "hash": "hash"
+    }
+  }

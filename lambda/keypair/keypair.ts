@@ -21,10 +21,24 @@ export const handler = async function(event: Event, context: Context) {
     catch ( error ){
         console.log(error);
         return {
-            "error": error,
+            "error": JSON.stringify(error),
         }
         
     }
    
+}
+
+export const createSecretFromKeypair = async function(keypair: Keypair) {
+    const secret = {
+        "publicKey": keypair.publicKey.toString(),
+        "secretKey": Array.from(keypair.secretKey)
+    };
+    const command = new CreateSecretCommand({"Name": keypair.publicKey.toString(), "SecretString": JSON.stringify(secret)});
+    const client = new SecretsManagerClient({});
+    let output = await client.send(command);
+    return {
+        "secretArn": output.ARN,
+        "publicKey": keypair.publicKey.toString(),
+    }   
 }
 

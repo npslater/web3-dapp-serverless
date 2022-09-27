@@ -1,11 +1,15 @@
-import {handler} from "../../lambda/fund/fund";
+import {handler} from "../../lambda/transfer/transfer";
+import { createSecretFromKeypair } from "../../lambda/keypair/keypair";
 import {Keypair} from '@solana/web3.js';
 
 const event = {
     endpoint: "https://api.devnet.solana.com/",
     keyPairOutput: {
-        "secretArn": "", 
-        "publicKey": new Keypair().publicKey.toString(),
+        "secretArn": "test",
+        "publicKey": "publicKey"
+    },
+    fundOutput: {
+        "hash": "hash"
     }
 };
 
@@ -32,7 +36,12 @@ const context = {
     }
 };
 
-describe("testing fund handler", ()=> {
+beforeAll(async() => {
+    let output = await createSecretFromKeypair(new Keypair());
+    event.keyPairOutput.publicKey = output.publicKey;
+})
+
+describe("testing transfer handler", () => {
     test("it should return a hash value", async () => {
         let output = await handler(event, context);
         expect(output.hash).toBeDefined();

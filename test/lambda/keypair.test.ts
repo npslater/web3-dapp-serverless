@@ -1,7 +1,6 @@
 import {handler} from "../../lambda/keypair/keypair";
 import {Context} from "aws-lambda";
 import {Event} from "../../lambda/keypair/event";
-import {v4 as uuidv4} from 'uuid';
 import { SecretsManagerClient, DeleteSecretCommand } from "@aws-sdk/client-secrets-manager";
 
 
